@@ -1,12 +1,13 @@
 version: '3'
 services:
   db:
-    image: postgres
+    image: postgres:11
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-
     environment:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
+    ports:
+      - "5432:5432"
 
   web:
     build: .
@@ -15,5 +16,7 @@ services:
       - .:/myapp
     ports:
       - "3000:3000"
+    tty: true
+    stdin_open: true
     depends_on:
       - db

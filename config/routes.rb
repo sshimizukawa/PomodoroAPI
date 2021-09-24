@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resource :samples
+
+  get "/patients/:id", to: "patients#show", as: "patient"
+  get "/users/auth/google_oauth2/callback", to: "users/omniauth_callbacks#google_oauth2"
 end

@@ -21,20 +21,23 @@ Bundler.require(*Rails.groups)
 
 module App
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
+    # [参考](https://github.com/omniauth/omniauth#integrating-omniauth-into-your-rails-api)
     config.load_defaults 6.1
-
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
-
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
+    config.session_store :cookie_store, key: "_interslice_session"
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Flash
     config.api_only = true
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        resource "*",
+          headers: %w(Authorization),
+          methods: [:get, :post, :options, :head],
+          expose: %w(Authorization),
+          max_age: 600
+      end
+    end
   end
 end
