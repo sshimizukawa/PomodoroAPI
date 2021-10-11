@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  length: 1
+  link: MyString
+  priority: 1
+  user: one
+
+two:
+  length: 1
+  link: MyString
+  priority: 1
+  user: two

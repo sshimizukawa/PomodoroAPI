@@ -30,3 +30,35 @@ $ docker-compose up
 
 ## テスト実行
 * How to run the test suite
+
+## api例
+
+```json
+path: /user/music_session_list
+type: GET
+disc: 再生スケジュールを取得する
+{
+    "music_sessions": [
+        {
+            "length": 1500000, // 曲の再生時間, ミリ秒
+            "links": ["path/to/file", "path/to/file2"], // mp3の配置リンク
+            "priority": 1 // 再生順
+        },
+        {
+            "length": 300000,
+            "links": ["path/to/file3"],
+            "priority": 2
+        }
+    ]
+}
+```
+```sh
+$ curl -X POST -F working_musics[]=@t.mp3 -F working_musics[]=@m.mp3 -F resting_musics[]=@m.mp3 -F lengths[]=1 -F lengths[]=2 localhost:3000/samples
+$ curl localhost:3000/samples
+```
+
+## TODO
+apisever の capstrano 記載
+本番環境のomniauthの設定を追記
+
+テスト

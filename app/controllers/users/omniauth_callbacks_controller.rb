@@ -12,7 +12,7 @@ class Users::OmniauthCallbacksController < ApplicationController
 
     if @user.persisted?
       session[:user_id] = info[:user].id
-      render json: { status: "login完了" }
+      return redirect_to "http://localhost:1234/"
     else
       render json: { status: "failed" }
     end

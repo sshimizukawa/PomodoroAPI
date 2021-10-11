@@ -1,6 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # [active storage使用に必要](https://github.com/rails/rails/issues/38681#issuecomment-780228293)
+  config.autoloader = :classic
+  
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # In the development environment your application's code is reloaded any time
