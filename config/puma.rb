@@ -1,4 +1,5 @@
-bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+# bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+bind "unix:////srv/www/PomodoroAPI/current/tmp/sockets/puma.sock"
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -15,8 +16,9 @@ threads min_threads_count, max_threads_count
 worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-#
-port ENV.fetch("PORT") { 3000 }
+
+# nginxではsocketを指定するため排除
+# port ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #

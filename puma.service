@@ -1,0 +1,18 @@
+# /etc/systemd/system/puma.service へ配置すること
+[Unit]
+Description=Puma HTTP Server
+After=network.target
+
+[Service]
+Type=notify
+WatchdogSec=10
+User=ec2-user
+WorkingDirectory=/srv/www/PomodoroAPI/current
+# Environment=PUMA_DEBUG=1
+Environment=RAILS_ENV=development
+Environment=USING_WEB_SERVER=true
+ExecStart=/home/ec2-user/.rbenv/shims/bundle exec puma -e development -C /srv/www/PomodoroAPI/current/config/puma.rb 
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

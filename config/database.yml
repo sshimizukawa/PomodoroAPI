@@ -2,16 +2,17 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: db
   username: postgres
   passowrd:
 
 development:
   <<: *default
+  host: db
   database: pomodoro_development
 
 test:
   <<: *default
+  host: db
   database: pomodoro_test
 
 production:
