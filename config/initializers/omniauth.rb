@@ -4,7 +4,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
              skip_jwt: true,
              access_type: "offline",
              prompt: "consent",
-             callback_path: "/users/auth/google_oauth2/callback",
+             callback_path: "/api/users/auth/google_oauth2/callback",
            }
 end
 OmniAuth.config.allowed_request_methods = %i[get]

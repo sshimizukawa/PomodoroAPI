@@ -18,5 +18,4 @@ test:
 production:
   <<: *default
   database: pomodoro_production
-  username: pomodoro
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
