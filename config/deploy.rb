@@ -38,6 +38,7 @@ set :deploy_to, "/srv/www/PomodoroAPI"
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :linked_dirs, %w{assets log tmp config/master.key}
+set :linked_dirs, %w{assets log tmp}
+set :linked_files, %w{config/master.key}
 
 # todo: bundle install
