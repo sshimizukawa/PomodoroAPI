@@ -7,8 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    # @TODO: 本番機用の設定を追加する
-    origins "http://localhost:1234", "http://www.syykz.net"
+    origins "http://localhost:1234", "http://www.syykz.net", "https://www.syykz.net"
 
     resource "*",
       headers: :any,

@@ -4,6 +4,8 @@
 
 ## 環境構築手順
 
+* 本番環境の場合: 「GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET」をsystemdに定義すること
+
 ```bash
 $ docker-compose run web rake db:create
 
