@@ -12,7 +12,9 @@ class Users::OmniauthCallbacksController < ApplicationController
 
     if @user.persisted?
       session[:user_id] = info[:user].id
-      return redirect_to "http://localhost:1234/"
+      # @todo: 環境変数に定義 
+      redirect_url = Rails.env.production? ? 'https://www.syykz.net' : 'http://localhost:1234' 
+      return redirect_to redirect_url
     else
       render json: { status: "failed" }
     end
